@@ -70,12 +70,33 @@ AUTH_USER_MODEL = 'accounts.Account'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 # Database Configuration
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# Determine the environment (development or production)
+DJANGO_ENV = os.environ.get('DJANGO_ENV', 'development')
+
+if DJANGO_ENV == 'development':
+    # Local Development Settings
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    # Production Settings (using Railway PostgreSQL)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('railway'),
+            'USER': os.environ.get('postgres'),
+            'PASSWORD': os.environ.get('NMIfVajAcEA1lMo5GQJI'),
+            'HOST': os.environ.get('containers-us-west-189.railway.app', '127.0.0.1'),
+            'PORT': os.environ.get('6837', '5432'),
+        }
+    }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
