@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'greatkart_app',
     'category',
+    'accounts',
 ]
 
 MIDDLEWARE = [
