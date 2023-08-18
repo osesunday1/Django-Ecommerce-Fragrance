@@ -61,6 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'greatkart_project.wsgi.application'
 
+AUTH_USER_MODEL = 'accounts.Account'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -71,12 +72,8 @@ WSGI_APPLICATION = 'greatkart_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'NMIfVajAcEA1lMo5GQJI',
-        'HOST': 'containers-us-west-189.railway.app',
-        'PORT': '6837',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
